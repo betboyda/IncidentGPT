@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+
+  <title>
+    INCIDENTGPT
+  </title>
+
+  <style>
+
+    :root {
+
+      --primary: #00ff9d;
+      --secondary: #00c3ff;
+      --danger: #ff4d6d;
+
+      --bg-dark: #0d1117;
+      --bg-card: #161b22;
+      --bg-input: #0f141a;
+
+      --border: #30363d;
+
+      --text: #ffffff;
+      --text-secondary: #8b949e;
+    }
+
+    * {
+
+      box-sizing: border-box;
+    }
+
+    body {
+
+      margin: 0;
+      padding: 0;
+
+      min-height: 100vh;
+
+      background:
+        radial-gradient(circle at top left,
+        rgba(0,255,157,0.12),
+        transparent 30%),
+
+        radial-gradient(circle at bottom right,
+        rgba(0,195,255,0.12),
+        transparent 30%),
+
+        var(--bg-dark);
+
+      color: var(--text);
+
+      font-family: 'Segoe UI', sans-serif;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      overflow-x: hidden;
+    }
+
+    .container {
+
+      width: 92%;
+
+      max-width: 950px;
+
+      background: rgba(22,27,34,0.95);
+
+      backdrop-filter: blur(8px);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      padding: 45px;
+
+      box-shadow:
+        0 0 30px rgba(0,255,157,0.08),
+        0 0 60px rgba(0,195,255,0.05);
+
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+
+      from {
+
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+
+      text-align: center;
+
+      font-size: 3.2rem;
+
+      margin-bottom: 10px;
+
+      color: var(--primary);
+
+      letter-spacing: 3px;
+
+      text-shadow:
+        0 0 10px rgba(0,255,157,0.4),
+        0 0 20px rgba(0,255,157,0.2);
+    }
+
+    .subtitle {
+
+      text-align: center;
+
+      color: var(--text-secondary);
+
+      margin-bottom: 40px;
+
+      font-size: 1.05rem;
+    }
+
+    .section-title {
+
+      margin-bottom: 10px;
+
+      color: var(--secondary);
+
+      font-weight: bold;
+
+      font-size: 1rem;
+    }
+
+    textarea {
+
+      width: 100%;
+
+      min-height: 190px;
+
+      background: var(--bg-input);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+      color: var(--text);
+
+      font-size: 15px;
+
+      resize: vertical;
+
+      outline: none;
+
+      transition: 0.3s;
+
+      margin-bottom: 25px;
+    }
+
+    textarea:focus {
+
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 10px rgba(0,255,157,0.2);
+    }
+
+    .upload-box {
+
+      background: var(--bg-input);
+
+      border: 2px dashed var(--border);
+
+      border-radius: 14px;
+
+      padding: 25px;
+
+      margin-bottom: 25px;
+
+      transition: 0.3s;
+    }
+
+    .upload-box:hover {
+
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 15px rgba(0,255,157,0.15);
+    }
+
+    input[type="file"] {
+
+      width: 100%;
+
+      color: var(--text);
+
+      cursor: pointer;
+    }
+
+    button {
+
+      width: 100%;
+
+      padding: 18px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      color: #000;
+
+      font-size: 17px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+      margin-top: 10px;
+    }
+
+    button:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 0 20px rgba(0,255,157,0.3);
+    }
+
+    .features {
+
+      margin-top: 45px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+      gap: 15px;
+    }
+
+    .feature-card {
+
+      background: rgba(255,255,255,0.03);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+
+      transform: translateY(-3px);
+
+      border-color: var(--secondary);
+
+      box-shadow:
+        0 0 20px rgba(0,195,255,0.1);
+    }
+
+    .feature-card h3 {
+
+      margin-top: 0;
+
+      color: var(--primary);
+
+      font-size: 1rem;
+    }
+
+    .feature-card p {
+
+      color: var(--text-secondary);
+
+      font-size: 0.93rem;
+
+      line-height: 1.5;
+    }
+
+    .footer {
+
+      margin-top: 35px;
+
+      text-align: center;
+
+      color: var(--text-secondary);
+
+      font-size: 0.9rem;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>
+    INCIDENTGPT
+  </h1>
+
+  <p class="subtitle">
+
+    AI Destekli Multimodal Incident Response Platformu
+
+  </p>
+
+  <form action="/analyze"
+        method="POST"
+        enctype="multipart/form-data">
+
+    <!-- LOG -->
+
+    <div class="section-title">
+
+      Security Log Input
+
+    </div>
+
+    <textarea
+      name="log_text"
+      placeholder="Security log verisini buraya yapıştırın..."></textarea>
+
+    <!-- LOG FILE -->
+
+    <div class="upload-box">
+
+      <div class="section-title">
+
+        Log Dosyası Yükle
+
+      </div>
+
+      <input type="file"
+             name="log_file">
+
+    </div>
+
+    <!-- IMAGE -->
+
+    <div class="upload-box">
+
+      <div class="section-title">
+
+        Güvenlik Görseli / Screenshot
+
+      </div>
+
+      <input type="file"
+             name="image_file">
+
+    </div>
+
+    <!-- BUTTON -->
+
+    <button type="submit">
+
+      INCIDENT ANALYSIS BAŞLAT
+
+    </button>
+
+  </form>
+
+  <!-- FEATURES -->
+
+  <div class="features">
+
+    <div class="feature-card">
+
+      <h3>
+        Generic Threat Detection
+      </h3>
+
+      <p>
+        Rastgele ve yarı-yapısal loglarda
+        tehdit analizi gerçekleştirir.
+      </p>
+
+    </div>
+
+    <div class="feature-card">
+
+      <h3>
+        OCR Destekli Görsel Analizi
+      </h3>
+
+      <p>
+        Screenshot ve güvenlik görsellerinden
+        metin çıkarımı gerçekleştirir.
+      </p>
+
+    </div>
+
+    <div class="feature-card">
+
+      <h3>
+        MITRE ATT&CK Mapping
+      </h3>
+
+      <p>
+        Olayları MITRE ATT&CK teknikleriyle
+        eşleştirir.
+      </p>
+
+    </div>
+
+    <div class="feature-card">
+
+      <h3>
+        Correlation Engine
+      </h3>
+
+      <p>
+        Brute force ve authentication saldırılarını
+        korelasyon mantığıyla analiz eder.
+      </p>
+
+    </div>
+
+    <div class="feature-card">
+
+      <h3>
+        Confidence Scoring
+      </h3>
+
+      <p>
+        Analiz sonuçlarının güven seviyesini
+        yüzdesel olarak hesaplar.
+      </p>
+
+    </div>
+
+    <div class="feature-card">
+
+      <h3>
+        PDF Incident Reporting
+      </h3>
+
+      <p>
+        Incident sonuçlarını PDF formatında
+        dışa aktarır.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+
+    INCIDENTGPT © 2026
+
+  </div>
+
+</div>
+
+</body>
+</html>
